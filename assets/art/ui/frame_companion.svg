@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="220" viewBox="0 0 300 220">
+  <rect width="300" height="220" fill="#000000"/>
+  <rect x="3" y="3" width="294" height="214" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="150" y="91" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="24" fill="#ffffff" text-anchor="middle">伙伴卡边框</text>
+  <text x="150" y="120" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="12" fill="#888888" text-anchor="middle">300×220</text>
+</svg>

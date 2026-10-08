@@ -1,0 +1,15 @@
+{
+  "name": "fairytale-clash",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "《童话奇境》卡牌对战 - M0 规则内核 + M0.5 平衡验证",
+  "scripts": {
+    "start": "node server.js",
+    "sim": "node sim.js",
+    "art": "node tools/gen_placeholders.js",
+    "nettest": "node tools/nettest.js",
+    "balance": "node tools/balance.js",
+    "tune": "node tools/tune.js"
+  }
+}

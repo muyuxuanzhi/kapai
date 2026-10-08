@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="220" viewBox="0 0 300 220">
+  <rect width="300" height="220" fill="#000000"/>
+  <rect x="3" y="3" width="294" height="214" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="150" y="38" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="30" fill="#ffffff" text-anchor="middle">三月兔</text>
+  <text x="150" y="97" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="16" fill="#bbbbbb" text-anchor="middle">伙伴卡 · 🃏 仙境</text>
+  <text x="150" y="121" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="14" fill="#999999" text-anchor="middle">12 生命 / 5 攻击 · 2 费</text>
+  <text x="150" y="139" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="12" fill="#777777" text-anchor="middle">占位图 300×220 · 替换 c03.svg</text>
+</svg>

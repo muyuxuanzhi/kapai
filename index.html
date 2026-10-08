@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>童话奇境 · 卡牌对战</title>
+<link rel="stylesheet" href="src/ui/style.css">
+</head>
+<body>
+
+<!-- ═══════════ 个人主页 ═══════════ -->
+<div id="home">
+  <div class="profile-bar">
+    <div class="avatar-mini">📖</div>
+    <div class="pinfo-mini">
+      <div class="nick">小读者 <span class="lv">Lv.10</span></div>
+      <div class="xpbar"><div class="fill" style="width:45%"></div></div>
+    </div>
+    <div class="currency-row">
+      <div class="currency-chip gold"><span class="ic">💰</span>1200</div>
+      <div class="currency-chip gem"><span class="ic">💧</span>800</div>
+      <div class="currency-chip add">+</div>
+    </div>
+  </div>
+
+  <div class="home-inner">
+    <h1 class="home-title">📖 童话奇境 <small>Fairytale Clash</small></h1>
+
+    <section class="home-sec" id="tab-partner">
+      <h2>主角 <small>出战伙伴 · 皮肤形态 · 局外切换</small></h2>
+      <div class="partner-stage">
+        <div class="stage-preview"><div class="ring"></div><img id="partnerPreview" alt="角色占位图"></div>
+        <div class="partner-detail" id="partnerDetail"></div>
+        <div class="partner-list" id="partnerList" aria-label="选择出战角色"></div>
+      </div>
+    </section>
+
+    <!-- 召唤舞台（抽卡）占位 -->
+    <section class="home-sec hidden" id="tab-summon">
+      <h2>召唤舞台 <small>消耗星之泪抽取卡牌碎片</small></h2>
+      <div class="summon-row">
+        <div class="summon-card">
+          <div class="sc-title">星光舞台</div>
+          <div class="sc-cost">2000 星之泪 / 次</div>
+          <div class="sc-desc">随机获得 6~15 张卡牌，有机会获得伙伴卡</div>
+          <button class="soon-btn" disabled>开发中</button>
+        </div>
+        <div class="summon-card gold">
+          <div class="sc-title">梦幻舞台</div>
+          <div class="sc-cost">99 晶钻 / 次</div>
+          <div class="sc-desc">随机获得 19~39 张卡牌，必得伙伴卡</div>
+          <button class="soon-btn" disabled>开发中</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-sec hidden" id="tab-battle">
+      <h2>童话舞台 <small>AI 练习 / 联机房间</small></h2>
+      <div class="lobby-stage">
+        <div class="lobby-hero"><img id="lobbyArt" alt="出战角色占位图"><strong id="lobbyName"></strong><span>出战形态 · 局外切换</span><button id="editPartner">切换角色</button></div>
+        <div class="deck-showcase"><h3>我的手牌 <button id="editDeck">编卡</button></h3><div id="lobbyDeck" class="lobby-deck"></div><p id="lobbySummary"></p></div>
+      </div>
+      <div class="battle-setup">
+        <label>AI 难度 <select id="selDiffHome">
+          <option value="easy">见习</option>
+          <option value="normal" selected>普通</option>
+          <option value="hard">噩梦</option>
+        </select></label>
+        <label>伙伴等级 <select id="selLevelHome">
+          <option value="1">Lv1</option>
+          <option value="10" selected>Lv10</option>
+          <option value="20">Lv20</option>
+          <option value="30">Lv30</option>
+        </select></label>
+      </div>
+      <div class="home-actions">
+        <button id="btnStartAi" class="big">开始对战（AI）</button>
+        <button id="btnStartCreate">创建房间（联机）</button>
+        <input id="homeRoomInput" placeholder="房间码" maxlength="6" size="6">
+        <button id="btnStartJoin">加入房间</button>
+      </div>
+      <div class="tips">
+        💡 上场卡组为 <b>6 张助手卡 + 2 张奇遇卡</b>；助手卡放到卡位后会一直留在场上（跨回合），
+        被打死变成残骸仍占着卡位，需要花 <b>1 点梦力</b> 扫除后该卡才能再次刷新。
+      </div>
+    </section>
+
+    <section class="home-sec hidden" id="tab-deck">
+      <h2>编卡 <small>拖入替换 / 拖拽重排 / 点击移除 · 6 助手 + 2 奇遇</small></h2>
+      <div class="deck-toolbar"><label>阵营 <select id="filterFaction"><option value="all">全部故事</option><option value="wonder">仙境</option><option value="forest">森林</option><option value="oz">奥兹</option></select></label><label>查找 <input id="filterCard" placeholder="卡名或能力" maxlength="40"></label><button id="resetDeck">恢复初始卡组</button></div>
+      <div class="deck-slots">
+        <div class="slot-group">
+          <div class="group-title">助手卡 <span id="cntCompanion">0/6</span></div>
+          <div class="slots" id="deckCompanions"></div>
+        </div>
+        <div class="slot-group">
+          <div class="group-title">奇遇卡 <span id="cntSpell">0/2</span></div>
+          <div class="slots" id="deckSpells"></div>
+        </div>
+      </div>
+      <div class="resonance" id="resonanceInfo"></div>
+
+      <div class="lib-wrap">
+        <div class="lib-grid" id="cardLibrary"></div>
+        <div class="lib-tabs">
+          <button data-tab="companion" class="on">助手卡库</button>
+          <button data-tab="spell">奇遇卡库</button>
+        </div>
+      </div>
+      <div class="library-footer"><button id="pagePrev" aria-label="上一页">上一页</button><span id="libraryPage"></span><button id="pageNext" aria-label="下一页">下一页</button></div>
+      <p id="cardInspect" class="card-inspect" aria-live="polite">指向卡牌查看完整能力，拖入上方同类卡位替换。</p>
+    </section>
+  </div>
+
+  <!-- 底部入口：对齐原作「偶像 / 编卡 / 召唤舞台 / 对战 / 任务成就 / 排行榜 / 好友」 -->
+  <div class="home-nav">
+    <button data-go="partner" class="on">🎤<span>偶像</span></button>
+    <button data-go="deck">🂠<span>编卡</span></button>
+    <button data-go="summon">✨<span>召唤舞台</span></button>
+    <button data-go="battle">⚔<span>对战</span></button>
+    <button data-go="quest" class="soon">📜<span>任务成就</span></button>
+    <button data-go="rank" class="soon">🏆<span>排行榜</span></button>
+    <button data-go="friend" class="soon">👥<span>好友</span></button>
+  </div>
+</div>
+
+<!-- ═══════════ 战斗界面 ═══════════ -->
+<div id="game" class="hidden">
+
+  <div class="top">
+    <button class="gear" id="btnGear" title="设置">⚙</button>
+    <div class="turn-pill" id="turnInfo">我的回合 1/30</div>
+    <button class="btn-home" id="btnBackHome">← 主页</button>
+    <div class="room-tag" id="roomTag"></div>
+  </div>
+
+  <div class="settings hidden" id="settings">
+    <label>AI <select id="selDiff">
+      <option value="easy">见习</option>
+      <option value="normal" selected>普通</option>
+      <option value="hard">噩梦</option>
+    </select></label>
+    <label>等级 <select id="selLevel">
+      <option value="1">Lv1</option>
+      <option value="10" selected>Lv10</option>
+      <option value="20">Lv20</option>
+      <option value="30">Lv30</option>
+    </select></label>
+    <button id="btnNew">新对局</button>
+    <span class="sep"></span>
+    <button id="btnCreate">创建房间（联机）</button>
+    <input id="roomInput" placeholder="房间码" maxlength="6" size="6">
+    <button id="btnJoin">加入</button>
+    <button id="btnSolo">AI 练习</button>
+  </div>
+
+  <div class="stage">
+    <div class="partner-box me">
+      <img id="partnerArt0" class="avatar" alt="">
+      <div class="pinfo">
+        <div class="pname" id="partnerName0"></div>
+        <div class="hpbar"><div class="fill" id="hpFill0"></div><span id="hpText0"></span></div>
+        <div class="stat" id="partnerStat0"></div>
+        <div class="skills" id="skills0"></div>
+      </div>
+    </div>
+
+    <div class="partner-box foe">
+      <div class="pinfo">
+        <div class="pname" id="partnerName1"></div>
+        <div class="hpbar"><div class="fill" id="hpFill1"></div><span id="hpText1"></span></div>
+        <div class="stat" id="partnerStat1"></div>
+        <div class="skills" id="skills1"></div>
+      </div>
+      <img id="partnerArt1" class="avatar" alt="">
+    </div>
+
+    <!-- 战场：左右两列对位（卡放在卡位上，回合结束才攻击） -->
+    <div class="battlefield" id="battlefield">
+      <div class="combat-portrait mine"><img id="combatArt0" alt="我方出战角色"><span>我方角色</span></div>
+      <div class="col my" id="slots0"></div>
+      <div class="vsline"><span>对位</span></div>
+      <div class="col foe" id="slots1"></div>
+      <div class="combat-portrait enemy"><img id="combatArt1" alt="敌方出战角色"><span>敌方角色</span></div>
+    </div>
+
+    <div class="hint" id="hint"></div>
+
+    <div class="bottom">
+      <div class="mana-box">
+        <span class="mana-label">梦力</span>
+        <div class="mana-cells" id="mana"></div>
+        <span class="mana-text" id="manaText"></span>
+      </div>
+      <div class="hand-zone">
+        <div class="hand" id="hand"></div>
+        <button class="end-btn" id="btnEnd">回合<br>结束</button>
+      </div>
+      <div class="mana-box foe">
+        <span class="mana-label">对手</span>
+        <div class="mana-cells" id="manaFoe"></div>
+        <div id="enemyHand" class="enemy-hand" aria-label="敌方手牌数量"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 攻击特效层：画「攻击方 → 受击方」的箭头与序号，pointer-events:none 不挡操作 -->
+  <svg id="fx" class="fx-layer" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <div id="overlay" class="overlay hidden">
+    <div class="panel">
+      <h2 id="ovTitle"></h2>
+      <p id="ovText"></p>
+      <button id="ovBtn">再来一局</button>
+      <button id="ovHome" class="ghost">返回主页</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="src/ui/app.js"></script>
+</body>
+</html>

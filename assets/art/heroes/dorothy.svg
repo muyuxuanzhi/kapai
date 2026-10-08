@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#000000"/>
+  <rect x="3" y="3" width="394" height="394" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="200" y="94" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="44" fill="#ffffff" text-anchor="middle">桃乐丝</text>
+  <text x="200" y="184" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="20" fill="#bbbbbb" text-anchor="middle">B 级 · 龙卷之旅</text>
+  <text x="200" y="211" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="14" fill="#999999" text-anchor="middle">主动：龙卷气旋 / 终极：回家吧，托托</text>
+  <text x="200" y="229" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="12" fill="#777777" text-anchor="middle">占位图 400×400 · 替换 dorothy.svg</text>
+</svg>

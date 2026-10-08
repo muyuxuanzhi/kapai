@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="150" viewBox="0 0 110 150">
+  <rect width="110" height="150" fill="#000000"/>
+  <rect x="3" y="3" width="104" height="144" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="55" y="60" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="18.333333333333332" fill="#ffffff" text-anchor="middle">空伙伴位</text>
+  <text x="55" y="85" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="12" fill="#888888" text-anchor="middle">110×150</text>
+</svg>

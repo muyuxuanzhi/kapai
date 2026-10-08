@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="280" viewBox="0 0 200 280">
+  <rect width="200" height="280" fill="#000000"/>
+  <rect x="3" y="3" width="194" height="274" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="100" y="121" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="24" fill="#ffffff" text-anchor="middle">卡背</text>
+  <text x="100" y="150" font-family="Microsoft YaHei,PingFang SC,sans-serif" font-size="12" fill="#888888" text-anchor="middle">200×280</text>
+</svg>
